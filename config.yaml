@@ -1,0 +1,10 @@
+service:
+  - name: "hard_service"
+    url_prefix: "/hard_service"
+    server_pool:
+      - container_name: "hard_service_instance_01"
+        port: 4000
+      - container_name: "hard_service_instance_02"
+        port: 4001
+      - container_name: "hard_service_instance_03"
+        port: 4002
