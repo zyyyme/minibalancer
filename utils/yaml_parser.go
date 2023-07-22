@@ -1,4 +1,4 @@
-package yamlparser
+package utils
 
 import (
 	"gopkg.in/yaml.v2"
