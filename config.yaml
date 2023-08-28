@@ -1,6 +1,6 @@
 service:
   - name: "hyperhash"
-    url_prefix: "/hyperhash"
+    url_prefix: "/hyperhash/"
     server_pool:
       - container_name: "hyperhash-1"
         port: 8000
