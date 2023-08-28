@@ -28,10 +28,10 @@ func (handler *ConfigHandler) requestHandler() http.Handler {
 	})
 }
 
-func (handler *ConfigHandler) setUpChannels() (map[string]chan services.UsageData, error) {
+func (handler *ConfigHandler) setUpChannels() error {
 	containers, err := services.GetContainersList()
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	grouppedContainerIDs := make(map[string][]services.ContainerInfo)
@@ -70,7 +70,7 @@ func (handler *ConfigHandler) setUpChannels() (map[string]chan services.UsageDat
 		}
 	}
 
-	return nil, nil
+	return nil
 }
 
 func ping(w http.ResponseWriter, _ *http.Request) {
@@ -88,7 +88,10 @@ func StartServer() {
 	}
 
 	configHandler := &ConfigHandler{config: config}
-	configHandler.setUpChannels()
+	err = configHandler.setUpChannels()
+	if err != nil {
+		panic(err)
+	}
 
 	logger := log.New(os.Stdout, "http: ", log.LstdFlags)
 	logger.Println("Server is starting...")
