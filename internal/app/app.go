@@ -13,8 +13,6 @@ import (
 	"time"
 )
 
-type key int
-
 type ConfigHandler struct {
 	config         services.Config
 	servicesVitals map[string][]chan services.UsageData
